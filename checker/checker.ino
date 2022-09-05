@@ -35,6 +35,8 @@ int button2State = LOW;
 int protocolMenuNo = 0;
 int baudMenuNo = 0;
 
+unsigned long myTime;
+
 byte protocolArray[6] = {SERIAL_7E1, SERIAL_7O1, SERIAL_8N1, SERIAL_8N2, SERIAL_8E1, SERIAL_8O1};
 String protocolArrayStr[6] = {"SERIAL_7E1", "SERIAL_7O1", "SERIAL_8N1", "SERIAL_8N2", "SERIAL_8E1", "SERIAL_8O1"};
 int baudArray[16] = {600, 1200, 1800, 2400, 4800, 9600, 19200 ,28800 ,38400 , 57600, 76800, 115200, 230400, 460800, 576000, 921600};
@@ -50,7 +52,7 @@ void setup()
   
   tft.init();
   tft.setRotation(1);
-  tft.invertDisplay(true);
+  tft.invertDisplay(false);
   
   printMessage(protocolArrayStr[protocolMenuNo], "", TFT_GREEN, TFT_BLACK);
   
@@ -64,6 +66,7 @@ void setup()
       
       // Menu
       if (BTNA.wasReleased()) {
+        myTime = millis();
         protocolMenuNo = protocolMenuNo + 1;
         btnLoop = false;
         printMessage(protocolArrayStr[protocolMenuNo], "", TFT_GREEN, TFT_BLACK);
@@ -74,12 +77,13 @@ void setup()
       }
     
       // Selection
-      if (BTNB.wasReleased()) {
+      if (BTNB.wasReleased() || millis() - myTime > 5000) {
         btnLoop = false;
         protocolSelected = true;
         button1State = HIGH;
         button2State = HIGH;
         printMessage(String(baudArray[baudMenuNo]), "", TFT_GREEN, TFT_BLACK);
+        myTime = millis();
       }
     }
 
@@ -90,6 +94,7 @@ void setup()
       
       // Menu
       if (BTNA.wasReleased()) {
+        myTime = millis();
         baudMenuNo = baudMenuNo + 1;
         btnLoop = false;
         printMessage(String(baudArray[baudMenuNo]), "", TFT_GREEN, TFT_BLACK);
@@ -100,10 +105,11 @@ void setup()
       }
     
       // Selection
-      if (BTNB.wasReleased()) {
+      if (BTNB.wasReleased() || millis() - myTime > 5000) {
         btnLoop = false;
         baudSelected = true;
         setupLoop = false;
+        myTime = millis();
       }
     }
   }
@@ -122,7 +128,7 @@ void loop()
     delay(5000);
   }
   
-  printMessage("Connection failed", "", TFT_RED, TFT_BLACK);
+  printMessage("Connection failed", "", TFT_WHITE, TFT_BLACK);
   delay(5000);
 }
 
