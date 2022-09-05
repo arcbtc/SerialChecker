@@ -11,4 +11,6 @@ Always:
 `GND<--->GND`
 
 Example WT32-SC01 conected to M5Stack. The message being displayed is evidence the serial connection is working.
+
+
 <img src="https://user-images.githubusercontent.com/33088785/188520980-5dffa9c4-d3a3-4717-89b2-c9fc5efc1e71.png" style="width:300px;">
