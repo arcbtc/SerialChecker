@@ -1,5 +1,5 @@
-# SerialChecker
-Little unit for testing serial connections.
+# ESP32 Serial Checker
+For testing serial connections from devices to ESP32 microcontrollers.
 
 Connect a device over serial and test incoming/outgoing data.
 
