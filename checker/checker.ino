@@ -12,7 +12,7 @@
 #define RX 2
 #define TX 4
 #define SerialNo 1
-#define SerialMessageStr "If I had 6hrs to chop down a tree I'd spend first 4 sharpening the axe"
+#define SerialMessageStr "If I had 6hrs to chop down a tree I'd spend the first 4 sharpening the axe"
 
 //============================//
 //============================//
