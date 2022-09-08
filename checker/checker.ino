@@ -122,7 +122,9 @@ void loop()
 {
   while (SerialPort.available()) {
     String x = SerialPort.readString();
-    printMessage(x, "", TFT_WHITE, TFT_BLACK);
+    int xx = SerialPort.read();
+    printMessage("String check: " + x, "Integer check: " + String(xx), TFT_WHITE, TFT_BLACK);
+
     SerialPort.println(SerialMessageStr);
   }
 }
